@@ -68,9 +68,12 @@ class ViewController: UIViewController {
         let alert = UIAlertController(title: "Quiz over",
                                       message: "Thanks for playing! Your score is: \(score)",
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
         
         self.present(alert, animated: true, completion: nil)
+        
         resetButton.isHidden = false
     }
     
@@ -79,23 +82,31 @@ class ViewController: UIViewController {
         resetButton.isHidden = true
         score = 0
     }
+    
+    func correctAnswerSelected() {
+        resultLabel.text = "You got it!"
+        score += 1
+    }
+    
+    func wrongAnswerSelected() {
+        score -= 1
+        resultLabel.text = "Wrong, try again..."
+    }
 
     @IBAction func submit(_ sender: Any) {
-        if answerPicker.selectedRow(inComponent: 0) == quiz?.answerIndex {
-            resultLabel.text = "You got it!"
-            score += 1
-            
-            guard let index = allQuizzes.lastIndex(where: { $0 == self.quiz }) else { return }
-            
-            if allQuizzes.count > index + 1 {
-                nextButton.isEnabled = true
-            } else {
-                quizOver()
-            }
-            
+        guard answerPicker.selectedRow(inComponent: 0) == quiz?.answerIndex else {
+            wrongAnswerSelected()
+            return
+        }
+        
+        correctAnswerSelected()
+        
+        guard let index = allQuizzes.lastIndex(where: { $0 == self.quiz }) else { return }
+        
+        if allQuizzes.count > index + 1 {
+            nextButton.isEnabled = true
         } else {
-            score -= 1
-            resultLabel.text = "Try again..."
+            quizOver()
         }
     }
     
