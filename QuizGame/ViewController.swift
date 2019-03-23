@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
+    let allQuizzes = Quiz.get()
+    
     var answers: [String] = []
     var quiz: Quiz? {
         didSet {
@@ -24,13 +26,12 @@ class ViewController: UIViewController {
             setValues(for: quiz)
         }
     }
+    var score = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.quiz = Quiz(question: "Who won the Super Bowl?",
-                         options: ["Michael Jackson", "The Patriots", "The Rams", "The Red Sox"],
-                         answerIndex: 1)
+        self.quiz = allQuizzes.first
         
         answerPicker.delegate = self
         answerPicker.dataSource = self
@@ -54,23 +55,44 @@ class ViewController: UIViewController {
         answerPicker.reloadAllComponents()
         answerPicker.selectRow(0, inComponent: 0, animated: true)
         resultLabel.text = ""
+        
+        nextButton.isEnabled = false
+    }
+    
+    func quizOver() {
+        let alert = UIAlertController(title: "Quiz over",
+                                      message: "Thanks for playing! Your score is: \(score)",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
     }
 
     @IBAction func submit(_ sender: Any) {
         if answerPicker.selectedRow(inComponent: 0) == quiz?.answerIndex {
             resultLabel.text = "You got it!"
-            nextButton.isEnabled = true
+            score += 1
+            
+            guard let index = allQuizzes.lastIndex(where: { $0 == self.quiz }) else { return }
+            
+            if allQuizzes.count > index + 1 {
+                nextButton.isEnabled = true
+            } else {
+                quizOver()
+            }
             
         } else {
+            score -= 1
             resultLabel.text = "Try again..."
         }
     }
     
     @IBAction func nextTapped(_ sender: Any) {
-        self.quiz = Quiz(question: "What day is it?",
-                         options: ["Monday", "Tuesday", "Saturday", "I don't know"],
-                         answerIndex: 2)
-        nextButton.isEnabled = false
+        guard let index = allQuizzes.lastIndex(where: { $0 == self.quiz }) else { return }
+        
+        if allQuizzes.count > index + 1 {
+            self.quiz = allQuizzes[index + 1]
+        }
     }
 }
 
