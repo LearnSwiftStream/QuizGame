@@ -47,6 +47,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJ2-D7-LDN">
+                                <rect key="frame" x="32" y="432" width="311" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.55168316918959559" blue="0.17899800183483738" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Yds-R0-5fW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Reset">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="76O-TG-GZF"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19l-O7-WGS">
                                 <rect key="frame" x="195.5" y="342" width="147.5" height="50"/>
                                 <state key="normal" title="Next"/>
@@ -59,6 +73,7 @@
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cou-BO-55w" secondAttribute="trailing" constant="24" id="1s0-gc-a4W"/>
                             <constraint firstItem="0Qb-fK-E3M" firstAttribute="top" secondItem="C8m-fn-KVR" secondAttribute="bottom" constant="24" id="44b-HC-Hso"/>
+                            <constraint firstItem="dJ2-D7-LDN" firstAttribute="trailing" secondItem="19l-O7-WGS" secondAttribute="trailing" id="7TJ-Nl-Uky"/>
                             <constraint firstItem="19l-O7-WGS" firstAttribute="top" secondItem="C8m-fn-KVR" secondAttribute="top" id="7XF-2F-7Ld"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0Qb-fK-E3M" secondAttribute="trailing" constant="16" id="7eR-H8-c3n"/>
                             <constraint firstItem="19l-O7-WGS" firstAttribute="leading" secondItem="C8m-fn-KVR" secondAttribute="trailing" constant="16" id="9nZ-bJ-Fno"/>
@@ -66,9 +81,12 @@
                             <constraint firstItem="0Qb-fK-E3M" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="CUn-Q5-qIw"/>
                             <constraint firstItem="nQ2-Nm-nOn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="CfY-y9-3RC"/>
                             <constraint firstItem="cou-BO-55w" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="Dlc-H4-Jb1"/>
+                            <constraint firstItem="dJ2-D7-LDN" firstAttribute="top" secondItem="0Qb-fK-E3M" secondAttribute="bottom" constant="16" id="H7g-3V-xtC"/>
                             <constraint firstItem="cou-BO-55w" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="48" id="OVC-rq-S58"/>
                             <constraint firstItem="nQ2-Nm-nOn" firstAttribute="top" secondItem="cou-BO-55w" secondAttribute="bottom" constant="42" id="RTW-6Q-hL5"/>
                             <constraint firstItem="19l-O7-WGS" firstAttribute="width" secondItem="C8m-fn-KVR" secondAttribute="width" id="TFa-JZ-yvc"/>
+                            <constraint firstItem="dJ2-D7-LDN" firstAttribute="leading" secondItem="C8m-fn-KVR" secondAttribute="leading" id="V5q-Us-Sz1"/>
+                            <constraint firstItem="dJ2-D7-LDN" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="YQg-du-Ndh"/>
                             <constraint firstItem="19l-O7-WGS" firstAttribute="height" secondItem="C8m-fn-KVR" secondAttribute="height" id="b04-gm-4cw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="19l-O7-WGS" secondAttribute="trailing" constant="32" id="eFO-4i-e0O"/>
                             <constraint firstItem="C8m-fn-KVR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="j98-hR-q1D"/>
@@ -80,6 +98,7 @@
                         <outlet property="answerPicker" destination="nQ2-Nm-nOn" id="kc3-eJ-C4K"/>
                         <outlet property="nextButton" destination="19l-O7-WGS" id="hWe-hB-9pT"/>
                         <outlet property="questionLabel" destination="cou-BO-55w" id="cMf-Ip-3cl"/>
+                        <outlet property="resetButton" destination="dJ2-D7-LDN" id="mUp-Ir-9hW"/>
                         <outlet property="resultLabel" destination="0Qb-fK-E3M" id="SLp-DC-vCV"/>
                         <outlet property="submitButton" destination="C8m-fn-KVR" id="t7v-0b-oCR"/>
                     </connections>

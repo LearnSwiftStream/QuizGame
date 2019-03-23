@@ -14,8 +14,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var answerPicker: UIPickerView!
     @IBOutlet weak var resultLabel: UILabel!
+    
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var resetButton: UIButton!
     
     let allQuizzes = Quiz.get()
     
@@ -43,6 +45,9 @@ class ViewController: UIViewController {
         nextButton.layer.borderWidth = 1
         nextButton.layer.borderColor = UIColor(red: 0, green: 122/255, blue: 1, alpha: 1).cgColor
         
+        resetButton.layer.cornerRadius = 16
+        resetButton.isHidden = true
+        
         answerPicker.layer.borderWidth = 1
         answerPicker.layer.borderColor = UIColor.darkGray.cgColor
         answerPicker.layer.cornerRadius = 8
@@ -66,6 +71,13 @@ class ViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
+        resetButton.isHidden = false
+    }
+    
+    func reset() {
+        self.quiz = allQuizzes.first
+        resetButton.isHidden = true
+        score = 0
     }
 
     @IBAction func submit(_ sender: Any) {
@@ -93,6 +105,10 @@ class ViewController: UIViewController {
         if allQuizzes.count > index + 1 {
             self.quiz = allQuizzes[index + 1]
         }
+    }
+    
+    @IBAction func resetTapped(_ sender: Any) {
+        reset()
     }
 }
 
