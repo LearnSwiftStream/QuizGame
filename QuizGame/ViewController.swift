@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var answerPicker: UIPickerView!
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
     
     var answers: [String] = []
     var quiz: Quiz? {
@@ -35,6 +36,12 @@ class ViewController: UIViewController {
         answerPicker.dataSource = self
         
         submitButton.layer.cornerRadius = 16
+        
+        nextButton.isEnabled = false
+        nextButton.layer.cornerRadius = 16
+        nextButton.layer.borderWidth = 1
+        nextButton.layer.borderColor = UIColor(red: 0, green: 122/255, blue: 1, alpha: 1).cgColor
+        
         answerPicker.layer.borderWidth = 1
         answerPicker.layer.borderColor = UIColor.darkGray.cgColor
         answerPicker.layer.cornerRadius = 8
@@ -43,16 +50,28 @@ class ViewController: UIViewController {
     func setValues(for quiz: Quiz) {
         questionLabel.text = quiz.question
         self.answers = quiz.options
+        
+        answerPicker.reloadAllComponents()
+        answerPicker.selectRow(0, inComponent: 0, animated: true)
+        resultLabel.text = ""
     }
 
     @IBAction func submit(_ sender: Any) {
         if answerPicker.selectedRow(inComponent: 0) == quiz?.answerIndex {
             resultLabel.text = "You got it!"
+            nextButton.isEnabled = true
+            
         } else {
             resultLabel.text = "Try again..."
         }
     }
     
+    @IBAction func nextTapped(_ sender: Any) {
+        self.quiz = Quiz(question: "What day is it?",
+                         options: ["Monday", "Tuesday", "Saturday", "I don't know"],
+                         answerIndex: 2)
+        nextButton.isEnabled = false
+    }
 }
 
 extension ViewController: UIPickerViewDelegate {

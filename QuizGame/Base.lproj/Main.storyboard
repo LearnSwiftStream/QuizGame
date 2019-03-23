@@ -24,8 +24,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQ2-Nm-nOn">
+                                <rect key="frame" x="16" y="110" width="343" height="216"/>
+                            </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8m-fn-KVR">
-                                <rect key="frame" x="32" y="342" width="311" height="50"/>
+                                <rect key="frame" x="32" y="342" width="147.5" height="50"/>
                                 <color key="backgroundColor" red="0.30706153694603877" green="1" blue="0.52115553569847761" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="PfY-1c-HVr"/>
@@ -44,30 +47,38 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQ2-Nm-nOn">
-                                <rect key="frame" x="16" y="110" width="343" height="216"/>
-                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19l-O7-WGS">
+                                <rect key="frame" x="195.5" y="342" width="147.5" height="50"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="nextTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uf2-UC-WiN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cou-BO-55w" secondAttribute="trailing" constant="24" id="1s0-gc-a4W"/>
                             <constraint firstItem="0Qb-fK-E3M" firstAttribute="top" secondItem="C8m-fn-KVR" secondAttribute="bottom" constant="24" id="44b-HC-Hso"/>
+                            <constraint firstItem="19l-O7-WGS" firstAttribute="top" secondItem="C8m-fn-KVR" secondAttribute="top" id="7XF-2F-7Ld"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0Qb-fK-E3M" secondAttribute="trailing" constant="16" id="7eR-H8-c3n"/>
+                            <constraint firstItem="19l-O7-WGS" firstAttribute="leading" secondItem="C8m-fn-KVR" secondAttribute="trailing" constant="16" id="9nZ-bJ-Fno"/>
                             <constraint firstItem="nQ2-Nm-nOn" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-16" id="BXx-Zv-K1i"/>
                             <constraint firstItem="0Qb-fK-E3M" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="CUn-Q5-qIw"/>
                             <constraint firstItem="nQ2-Nm-nOn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="CfY-y9-3RC"/>
                             <constraint firstItem="cou-BO-55w" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="Dlc-H4-Jb1"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="C8m-fn-KVR" secondAttribute="trailing" constant="32" id="FZG-Ui-098"/>
                             <constraint firstItem="cou-BO-55w" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="48" id="OVC-rq-S58"/>
                             <constraint firstItem="nQ2-Nm-nOn" firstAttribute="top" secondItem="cou-BO-55w" secondAttribute="bottom" constant="42" id="RTW-6Q-hL5"/>
+                            <constraint firstItem="19l-O7-WGS" firstAttribute="width" secondItem="C8m-fn-KVR" secondAttribute="width" id="TFa-JZ-yvc"/>
+                            <constraint firstItem="19l-O7-WGS" firstAttribute="height" secondItem="C8m-fn-KVR" secondAttribute="height" id="b04-gm-4cw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="19l-O7-WGS" secondAttribute="trailing" constant="32" id="eFO-4i-e0O"/>
                             <constraint firstItem="C8m-fn-KVR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="j98-hR-q1D"/>
-                            <constraint firstItem="C8m-fn-KVR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="x3x-Y0-V7E"/>
                             <constraint firstItem="C8m-fn-KVR" firstAttribute="top" secondItem="nQ2-Nm-nOn" secondAttribute="bottom" constant="16" id="yEp-qR-S31"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="answerPicker" destination="nQ2-Nm-nOn" id="kc3-eJ-C4K"/>
+                        <outlet property="nextButton" destination="19l-O7-WGS" id="hWe-hB-9pT"/>
                         <outlet property="questionLabel" destination="cou-BO-55w" id="cMf-Ip-3cl"/>
                         <outlet property="resultLabel" destination="0Qb-fK-E3M" id="SLp-DC-vCV"/>
                         <outlet property="submitButton" destination="C8m-fn-KVR" id="t7v-0b-oCR"/>
@@ -75,6 +86,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="40.799999999999997" y="25.637181409295355"/>
         </scene>
     </scenes>
 </document>
