@@ -8,16 +8,28 @@
 
 import UIKit
 
+typealias JSON = [String: Any]
+
 class ViewController: UIViewController {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var answerPicker: UIPickerView!
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var submitButton: UIButton!
     
-    let answers = ["Michael Jackson", "The Patriots", "The Rams", "The Red Sox"]
+    var answers: [String] = []
+    var quiz: Quiz? {
+        didSet {
+            guard let quiz = quiz else { return }
+            setValues(for: quiz)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.quiz = Quiz(question: "Who won the Super Bowl?",
+                         options: ["Michael Jackson", "The Patriots", "The Rams", "The Red Sox"],
+                         answerIndex: 1)
         
         answerPicker.delegate = self
         answerPicker.dataSource = self
@@ -26,12 +38,15 @@ class ViewController: UIViewController {
         answerPicker.layer.borderWidth = 1
         answerPicker.layer.borderColor = UIColor.darkGray.cgColor
         answerPicker.layer.cornerRadius = 8
-        
-        questionLabel.text = "Who won the Super Bowl?"
+    }
+    
+    func setValues(for quiz: Quiz) {
+        questionLabel.text = quiz.question
+        self.answers = quiz.options
     }
 
     @IBAction func submit(_ sender: Any) {
-        if answerPicker.selectedRow(inComponent: 0) == 1 {
+        if answerPicker.selectedRow(inComponent: 0) == quiz?.answerIndex {
             resultLabel.text = "You got it!"
         } else {
             resultLabel.text = "Try again..."
